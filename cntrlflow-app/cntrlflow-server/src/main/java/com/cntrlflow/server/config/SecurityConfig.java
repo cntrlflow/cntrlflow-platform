@@ -43,7 +43,7 @@ public class SecurityConfig {
 
 		http.csrf(csrf -> csrf.ignoringRequestMatchers("/", "/static/**", "/manifest.json/**",
 				"/favicon.ico/**", "/robots.txt/**", "/*.xml", "/*.json", "/*.jpg", "/*.gif", "/*.svg",
-				"/*.png", "/api/graphql").csrfTokenRepository(getCsrfTokenRepository()));
+				"/*.png", "/api/graphql", "/api/auth/**").csrfTokenRepository(getCsrfTokenRepository()));
 
 		http.authorizeHttpRequests(authorizeHttpRequest -> authorizeHttpRequest
 				.requestMatchers("/api/auth/**", "/graphiql/**").permitAll()

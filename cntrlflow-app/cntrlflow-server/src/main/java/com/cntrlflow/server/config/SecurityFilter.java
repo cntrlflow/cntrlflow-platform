@@ -11,9 +11,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.util.StringUtils;
+import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.cntrlflow.server.utility.BasicAuthUtil;
 import com.cntrlflow.server.utility.JwtUtil;
 
 import jakarta.servlet.FilterChain;
@@ -30,6 +31,9 @@ public class SecurityFilter extends OncePerRequestFilter {
 	private Boolean testStatus;
 	
 	@Autowired
+	private BasicAuthUtil basicAuthUtil;
+	
+	@Autowired
 	private JwtUtil jwtUtil;
 
 	@Override
@@ -41,12 +45,32 @@ public class SecurityFilter extends OncePerRequestFilter {
 
 			log.info("[cntrlflow] currentPath: " + currentPath);
 
-			if (!currentPath.equalsIgnoreCase("/api/graphql")) {
+			if(currentPath.equalsIgnoreCase("/api/auth/login")) {
+				log.info("[cntrlflow] inside else if condition");
+				String authorization = request.getHeader("Authorization");
+				
+				log.info("[cntrlflow] authorization: " + authorization);
+				
+				if (authorization.isEmpty() || authorization.isBlank()) {
+					throw new RuntimeException("[cntrlflow] authorization is empty");
+				}
+				
+				if(!authorization.equalsIgnoreCase(basicAuthUtil.getBasicToken())) {
+					throw new RuntimeException("[cntrlflow] authorization is invalid");
+				} else {
+					log.info("[cntrlflow] basic token validated successfully.");
+				}
+
+				filterChain.doFilter(request, response);
+			}
+
+			else if (!currentPath.equalsIgnoreCase("/api/graphql")) {
 				log.info("[cntrlflow] inside if condition");
 				filterChain.doFilter(request, response);
-			} else {
-				
-				log.info("[cntrlflow] inside else condition: " + testStatus);
+			}
+			
+			else {
+				log.info("[cntrlflow] inside else if condition: " + testStatus);
 				
 				if(!Boolean.valueOf(testStatus)) {
 					String jwtToken = jwtUtil.getJwtFromCookie(request);
@@ -66,10 +90,8 @@ public class SecurityFilter extends OncePerRequestFilter {
 						}
 
 						final UserDetails userDetails = new User(username, "", new ArrayList<>());
-						UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-								userDetails, null, userDetails.getAuthorities());
-						usernamePasswordAuthenticationToken
-								.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+						UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+						usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 						SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 						usernamePasswordAuthenticationToken = null;
 					} else {
@@ -77,14 +99,14 @@ public class SecurityFilter extends OncePerRequestFilter {
 					} 
 					filterChain.doFilter(request, response);
 				} else {
-					log.info("[cntrlflow] inside if condition");
+					log.info("[cntrlflow] inside else condition");
 					filterChain.doFilter(request, response);
 				}
 			}
 		} catch (Exception e) {
 			log.error("[cntrlflow] exception in security filter: " + e.getMessage());
 			e.printStackTrace();
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}
 

@@ -139,3 +139,4 @@ sketch
 *.classpath
 cntrlflow-app/cntrlflow-server/front-end/cntrlflow-ui/dist/
 cntrlflow-app/cntrlflow-server/front-end/cntrlflow-ui/node/
+cntrlflow-app/cntrlflow-server/.vscode/
