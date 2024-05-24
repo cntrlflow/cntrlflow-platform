@@ -19,6 +19,7 @@
 	</properties>
 
 	<modules>
+		<module>cntrlflow-ui</module>
 		<module>cntrlflow-server</module>
 		<module>cntrlflow-agent</module>
 	</modules>
