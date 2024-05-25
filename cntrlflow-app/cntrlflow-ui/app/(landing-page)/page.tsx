@@ -14,8 +14,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { AddReduxValue, GetReduxValue } from "@/redux/keyValueSlice";
+import { AddReduxValue } from "@/redux/keyValueSlice";
 import { AUTH_HEADER, LOGIN_URL } from "../constants";
+import Logo from "@/components/sidebar/_components/logo";
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -63,10 +64,13 @@ const LoginForm: React.FC = () => {
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+        <CardHeader className="flex flex-col items-center">
+          <div className="flex items-center mb-4 lg:gap-3 md:gap-3 sm:gap-3">
+            <Logo />
+            <span className="text-xl font-bold">CntrlFlow</span>
+          </div>
           <CardDescription>
-            Enter your username below to login to your account.
+            <span>Welcome, Let&apos;s get started!</span>
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -86,6 +90,7 @@ const LoginForm: React.FC = () => {
             <Input
               id="password"
               type="password"
+              placeholder="********"
               value={password}
               onChange={handlePasswordChange}
               required

@@ -1,3 +1,5 @@
+"use client";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Summary from "./_components/summary";
 import Configuration from "./_components/configuration";
