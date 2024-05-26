@@ -7,10 +7,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { User } from "lucide-react";
+// import { useDispatch } from "react-redux";
+// import { ClearReduxStore } from "@/redux/reduxStore";
 
 const RightNav = () => {
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    // ClearReduxStore(dispatch);
+    navigate("/");
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -33,7 +46,7 @@ const RightNav = () => {
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link to="/">Logout</Link>
+          <span onClick={handleLogout}>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

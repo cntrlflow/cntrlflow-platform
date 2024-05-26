@@ -12,13 +12,27 @@ import { Input } from "@/components/ui/input";
 import Logo from "@/components/sidebar/_components/logo";
 import { useNavigate } from "react-router-dom";
 import { AUTH_HEADER, LOGIN_URL } from "@/Constants";
+import { AddReduxValue } from "@/redux/reduxStore";
+import { useDispatch } from "react-redux";
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // const authenticated = GetReduxValue("authenticated");
+  // const previousPath = GetReduxValue("previousPath");
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+
+  // useEffect(() => {
+  //   if (authenticated == "true") {
+  //     if (previousPath != "") {
+  //       navigate(previousPath);
+  //     }
+  //   }
+  // }, [authenticated, navigate, previousPath]);
 
   const headers = {
     authorization: AUTH_HEADER,
@@ -33,7 +47,10 @@ const LoginForm: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = async (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
     try {
       const response = await fetch(LOGIN_URL, {
         method: "POST",
@@ -44,6 +61,7 @@ const LoginForm: React.FC = () => {
       const data = await response.json();
 
       if (response.ok && data.status === "success") {
+        AddReduxValue(dispatch, "authenticated", "true");
         navigate("/home");
       } else {
         setError(data.message || "Invalid username or password");
@@ -91,9 +109,9 @@ const LoginForm: React.FC = () => {
           {error && <p style={{ color: "red" }}>{error}</p>}
         </CardContent>
         <CardFooter>
-          <Button onClick={handleButtonClick} className="w-full">
-            Sign in
-          </Button>
+          <span onClick={handleButtonClick}>
+            <Button className="w-full">Sign in</Button>
+          </span>
         </CardFooter>
       </Card>
     </div>
