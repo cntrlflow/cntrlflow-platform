@@ -142,3 +142,4 @@ cntrlflow-app/cntrlflow-server/front-end/cntrlflow-ui/node/
 cntrlflow-app/cntrlflow-server/.vscode/
 cntrlflow-app/.vscode/
 cntrlflow-app/cntrlflow-ui/package-lock.json
+cntrlflow-app/cntrlflow-ui/node/

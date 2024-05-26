@@ -1,3 +1,3 @@
 set HOMEPATH=%CD%
-cd %HOMEPATH% && rmdir /S /Q cntrlflow-ui\.next && rmdir /S /Q cntrlflow-ui\out
+cd %HOMEPATH% && rmdir /S /Q cntrlflow-ui\dist
 mvn clean package

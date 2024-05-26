@@ -96,10 +96,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/classes/static</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/../cntrlflow-ui/out</directory>
+                                    <directory>${basedir}/../cntrlflow-ui/dist</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
