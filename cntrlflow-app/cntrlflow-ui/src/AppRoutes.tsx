@@ -10,15 +10,11 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/home" element={<ProtectedRoute redirectTo="/login" />}>
-          <Route index element={<Home />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
-        <Route
-          path="/dashboard"
-          element={<ProtectedRoute redirectTo="/login" />}
-        >
-          <Route index element={<Dashboard />} />
-        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );

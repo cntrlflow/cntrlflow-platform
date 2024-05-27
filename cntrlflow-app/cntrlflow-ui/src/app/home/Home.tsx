@@ -3,21 +3,8 @@ import HomeCard from "./_components/home-card";
 import { DollarSign, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import CustomTableWithLink from "./_components/custom-table-with-link";
-// import { useLocation } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { useEffect } from "react";
-// import { AddReduxValue } from "@/redux/reduxStore";
 
 const Home = () => {
-  // const location = useLocation();
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (location.pathname != "/login") {
-  //     AddReduxValue(dispatch, "previousPath", location.pathname);
-  //   }
-  // }, [dispatch, location.pathname]);
-
   const headers = ["Cluster Name", "Total Services", "Total Servers", "Email"];
   const data = [
     [

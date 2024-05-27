@@ -24,7 +24,7 @@ public class SecurityConfig {
 
 	@Autowired
 	private SecurityFilter securityFilter;
-	
+
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -49,17 +49,17 @@ public class SecurityConfig {
 				.requestMatchers("/api/auth/**", "/graphiql/**").permitAll()
 				.requestMatchers("/api/graphql").authenticated()
 				.anyRequest().authenticated());
-		
+
 		log.info("[cntrlflow] applying security filter");
 		http.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
-		
+
 		return http.build();
 	}
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		return (web) -> web.ignoring().requestMatchers("/", "/**", "/static/**", "/manifest.json/**",
-				"/favicon.ico/**", "/robots.txt/**", "/api/login", "/*.xml", "/*.json", "/*.jpg", "/*.gif",
+				"/favicon.ico/**", "/robots.txt/**", "/api/auth/login", "/api/auth/validate" ,"/*.xml", "/*.json", "/*.jpg", "/*.gif",
 				"/*.png", "/*.jpg", "/*.html", "/*.css", "/*.js");
 	}
 

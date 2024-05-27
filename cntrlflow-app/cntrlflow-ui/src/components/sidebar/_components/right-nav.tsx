@@ -7,21 +7,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useNavigate } from "react-router-dom";
 import { User } from "lucide-react";
-// import { useDispatch } from "react-redux";
-// import { ClearReduxStore } from "@/redux/reduxStore";
+import { HEADERS, LOGOUT_URL } from "@/Constants";
 
 const RightNav = () => {
-  // const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const handleLogout = async () => {
+    const response = await fetch(LOGOUT_URL, {
+      method: "POST",
+      headers: HEADERS,
+      credentials: "include",
+    });
 
-  const handleLogout = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    // ClearReduxStore(dispatch);
-    navigate("/");
+    if (response.ok) {
+      // Redirect to the login page or home page after logout
+      window.location.href = "/login";
+    } else {
+      console.error("Logout failed");
+    }
   };
 
   return (

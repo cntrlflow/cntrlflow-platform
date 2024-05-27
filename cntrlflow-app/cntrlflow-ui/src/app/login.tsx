@@ -6,38 +6,41 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/sidebar/_components/logo";
-import { useNavigate } from "react-router-dom";
-import { AUTH_HEADER, LOGIN_URL } from "@/Constants";
-import { AddReduxValue } from "@/redux/reduxStore";
-import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { HEADERS, LOGIN_URL } from "@/Constants";
+import { checkAuth } from "@/utils/auth";
+import { LocationState } from "@/utils/types";
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // const authenticated = GetReduxValue("authenticated");
-  // const previousPath = GetReduxValue("previousPath");
+  const location = useLocation();
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  // useEffect(() => {
-  //   if (authenticated == "true") {
-  //     if (previousPath != "") {
-  //       navigate(previousPath);
-  //     }
-  //   }
-  // }, [authenticated, navigate, previousPath]);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
-  const headers = {
-    authorization: AUTH_HEADER,
-    "Content-Type": "application/json; charset=utf8",
-  };
+  useEffect(() => {
+    const fetchAuthStatus = async () => {
+      const isAuthenticated = await checkAuth();
+      setIsAuthenticated(isAuthenticated);
+    };
+
+    fetchAuthStatus();
+  }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // Redirect to the previous path if authenticated
+      const from = (location.state as LocationState)?.from?.pathname || "/home";
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, location.state]);
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -47,24 +50,22 @@ const LoginForm: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleButtonClick = async (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    event.preventDefault();
+  const handleLogin = async () => {
     try {
       const response = await fetch(LOGIN_URL, {
         method: "POST",
-        headers: headers,
+        headers: HEADERS,
         body: JSON.stringify({ username, password }),
+        credentials: "include",
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.status === "success") {
-        AddReduxValue(dispatch, "authenticated", "true");
-        navigate("/home");
-      } else {
-        setError(data.message || "Invalid username or password");
+      if (response.ok) {
+        const { status } = await response.json();
+        if (status === "success") {
+          navigate("/home", { replace: true });
+        } else {
+          setError("Invalid username or password");
+        }
       }
     } catch (error) {
       setError("An error occurred. Please try again.");
@@ -109,7 +110,7 @@ const LoginForm: React.FC = () => {
           {error && <p style={{ color: "red" }}>{error}</p>}
         </CardContent>
         <CardFooter>
-          <span onClick={handleButtonClick}>
+          <span onClick={handleLogin}>
             <Button className="w-full">Sign in</Button>
           </span>
         </CardFooter>
