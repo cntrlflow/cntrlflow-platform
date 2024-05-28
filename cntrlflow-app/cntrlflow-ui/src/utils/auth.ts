@@ -1,6 +1,9 @@
 import { VALIDATE_URL } from "@/Constants";
 
-export const checkAuth = async (): Promise<boolean> => {
+export const checkAuth = async (skip = false): Promise<boolean> => {
+  if (skip) {
+    return true;
+  }
   try {
     const response = await fetch(VALIDATE_URL, {
       method: "GET",

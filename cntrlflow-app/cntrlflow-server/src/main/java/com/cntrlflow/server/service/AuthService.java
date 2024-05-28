@@ -1,5 +1,6 @@
 package com.cntrlflow.server.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Hashtable;
 
 import javax.naming.Context;
@@ -7,11 +8,16 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.cntrlflow.server.model.LoginRequest;
+import com.cntrlflow.server.utility.HashUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class AuthService {
 
@@ -32,6 +38,9 @@ public class AuthService {
 
     @Value("${cntrlflow.default.password}")
     private String defaultPassword;
+
+    @Autowired
+    private HashUtil hashUtil;
 
     public boolean authenticateUser(LoginRequest loginRequest) {
         //log.info("[cntrlflow] authenticateUser");
@@ -95,10 +104,27 @@ public class AuthService {
         }
     }
 
+    // private boolean defaultAuthentication(LoginRequest loginRequest) {
+    //     if (loginRequest.getUsername().equals(defaultUsername) && loginRequest.getPassword().equals(defaultPassword)) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
     private boolean defaultAuthentication(LoginRequest loginRequest) {
-        if (loginRequest.getUsername().equals(defaultUsername) && loginRequest.getPassword().equals(defaultPassword)) {
-            return true;
-        } else {
+        try {
+            String hashedPassword = hashUtil.hashPassword(defaultPassword);
+            log.info("[cntrlflow] hashedPasswordDefault: " + hashedPassword);
+            log.info("[cntrlflow] hashedPassword: " + loginRequest.getPassword());
+            log.info("[cntrlflow] verify password:" + hashUtil.verifyPassword(loginRequest.getPassword(), hashedPassword));
+            if (loginRequest.getUsername().equals(defaultUsername)) {
+                return hashUtil.verifyPassword(loginRequest.getPassword(), hashedPassword);
+            } else {
+                return false;
+            }
+        } catch(NoSuchAlgorithmException | Error e) {
+            e.printStackTrace();
             return false;
         }
     }

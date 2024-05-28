@@ -36,7 +36,6 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // Redirect to the previous path if authenticated
       const from = (location.state as LocationState)?.from?.pathname || "/home";
       navigate(from, { replace: true });
     }
@@ -52,10 +51,15 @@ const LoginForm: React.FC = () => {
 
   const handleLogin = async () => {
     try {
+      const hashPass = await hashPassword(password);
+      console.log(hashPass);
       const response = await fetch(LOGIN_URL, {
         method: "POST",
         headers: HEADERS,
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({
+          username: username,
+          password: hashPass,
+        }),
         credentials: "include",
       });
 
@@ -72,11 +76,20 @@ const LoginForm: React.FC = () => {
     }
   };
 
+  async function hashPassword(password: string) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hash = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(hash))
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Card className="w-full max-w-sm">
         <CardHeader className="flex flex-col items-center">
-          <div className="flex items-center mb-4 lg:gap-3 md:gap-3 sm:gap-3">
+          <div className="flex items-center mb-4 gap-3">
             <Logo />
             <span className="text-xl font-bold">CntrlFlow</span>
           </div>

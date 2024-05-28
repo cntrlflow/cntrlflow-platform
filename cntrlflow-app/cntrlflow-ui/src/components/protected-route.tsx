@@ -7,7 +7,9 @@ const ProtectedRoute: React.FC = () => {
 
   useEffect(() => {
     const verifyAuth = async () => {
-      const isAuthenticated = await checkAuth();
+      const skipAuthCheck =
+        location.pathname === "/login" || location.pathname === "/";
+      const isAuthenticated = await checkAuth(skipAuthCheck);
       setIsAuthenticated(isAuthenticated);
     };
 
