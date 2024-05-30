@@ -5,10 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // import { useEffect } from "react";
 // import { useDispatch } from "react-redux";
 // import { useLocation } from "react-router-dom";
-import Summary from "./_components/summary";
-import Configuration from "./_components/configuration";
-import Environment from "./_components/environment";
-import Logs from "./_components/logs";
+import Summary from "./_components/Summary";
+import Configuration from "./_components/Configuration";
+import Environment from "./_components/Environment";
+import Logs from "./_components/Logs";
 
 const Dashboard = () => {
   // const location = useLocation();

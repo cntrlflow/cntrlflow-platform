@@ -1,8 +1,8 @@
 import TopBar from "@/components/topbar/topbar";
-import HomeCard from "./_components/home-card";
+import HomeCard from "./_components/HomeCard";
 import { DollarSign, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import CustomTableWithLink from "./_components/custom-table-with-link";
+import CustomTableWithLink from "./_components/CustomTableWithLink";
 
 const Home = () => {
   const headers = ["Cluster Name", "Total Services", "Total Servers", "Email"];

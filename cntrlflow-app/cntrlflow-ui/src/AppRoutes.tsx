@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "@/app/login";
+import Login from "@/app/Login";
 import ProtectedRoute from "@/components/protected-route";
-import Home from "@/app/home/home";
-import Dashboard from "@/app/dashboard/dashboard";
+import Dashboard from "@/app/dashboard/Dashboard";
+import Home from "./app/home/Home";
 
 const AppRoutes = () => {
   return (
