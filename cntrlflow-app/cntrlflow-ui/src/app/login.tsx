@@ -26,13 +26,15 @@ const LoginForm: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const fetchAuthStatus = async () => {
-      const isAuthenticated = await checkAuth();
-      setIsAuthenticated(isAuthenticated);
-    };
+    if (location.pathname !== "/login") {
+      const fetchAuthStatus = async () => {
+        const isAuthenticated = await checkAuth();
+        setIsAuthenticated(isAuthenticated);
+      };
 
-    fetchAuthStatus();
-  }, []);
+      fetchAuthStatus();
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -52,7 +54,6 @@ const LoginForm: React.FC = () => {
   const handleLogin = async () => {
     try {
       const hashPass = await hashPassword(password);
-      console.log(hashPass);
       const response = await fetch(LOGIN_URL, {
         method: "POST",
         headers: HEADERS,

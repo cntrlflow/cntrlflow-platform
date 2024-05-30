@@ -58,13 +58,13 @@ const Home = () => {
         <div className="grid gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           <HomeCard
             xChunk="chunk-0"
-            name="Total Revenue"
+            name="Total Clusters"
             icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
             metrics="$45,231.89"
           />
           <HomeCard
             xChunk="chunk-1"
-            name="Total Revenue"
+            name="Total Servers"
             icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
             metrics="$45,231.89"
           />

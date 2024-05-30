@@ -34,8 +34,8 @@ public class SecurityConfig {
 			configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 			configuration.setAllowedHeaders(Arrays.asList("Authorization", "X-Auth-Token",
 					"Access-Control-Allow-Headers", "X-Requested-With", "X-HTTP-Method-Override", "Content-Type",
-					"Accept", "Pragma", "Expires", "X-Frame-Options", "Cache-Control", "X-XSRF-TOKEN"));
-			configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+					"Accept", "Pragma", "Expires", "X-Frame-Options", "Cache-Control", "X-XSRF-TOKEN","Access-Control-Allow-Origin"));
+			configuration.setExposedHeaders(Arrays.asList("x-auth-token","Set-Cookie"));
 			configuration.setAllowCredentials(true);
 			configuration.setMaxAge(3600L);
 			return configuration;
@@ -55,6 +55,7 @@ public class SecurityConfig {
 
 		return http.build();
 	}
+
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
