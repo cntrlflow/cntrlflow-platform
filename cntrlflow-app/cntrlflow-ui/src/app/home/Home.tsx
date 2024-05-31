@@ -1,3 +1,4 @@
+//sfc
 import TopBar from "@/components/topbar/topbar";
 import HomeCard from "./_components/HomeCard";
 import { DollarSign, Search } from "lucide-react";

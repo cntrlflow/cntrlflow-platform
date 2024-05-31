@@ -1,25 +1,12 @@
 import NavMenu from "@/components/sidebar/nav-menu";
 import SideBar from "@/components/sidebar/sidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { AddReduxValue } from "@/redux/reduxStore";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { useLocation } from "react-router-dom";
 import Summary from "./_components/Summary";
 import Configuration from "./_components/Configuration";
 import Environment from "./_components/Environment";
 import Logs from "./_components/Logs";
 
 const Dashboard = () => {
-  // const location = useLocation();
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (location.pathname != "/login") {
-  //     AddReduxValue(dispatch, "previousPath", location.pathname);
-  //   }
-  // }, [dispatch, location.pathname]);
-
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <SideBar />
