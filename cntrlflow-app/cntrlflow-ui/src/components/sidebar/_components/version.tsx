@@ -1,5 +1,5 @@
 import { Settings } from "lucide-react";
-import MenuWithToolTip from "./menu";
+import MenuWithToolTip from "./Menu";
 
 const Version = () => {
   return (

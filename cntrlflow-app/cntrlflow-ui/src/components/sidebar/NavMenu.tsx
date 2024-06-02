@@ -8,11 +8,11 @@ import {
   Users2,
   Search,
 } from "lucide-react";
-import MobileMenu from "./_components/mobile-menu";
-import Logo from "./_components/logo";
-import CustomBreadcrumbList from "./_components/breadcrumb";
+import MobileMenu from "./_components/MobileMenu";
+import Logo from "./_components/Logo";
+import CustomBreadcrumbList from "./_components/Breadcrumb";
 import { Input } from "@/components/ui/input";
-import RightNav from "./_components/right-nav";
+import RightNav from "./_components/RightNav";
 
 interface LinkProps {
   href: string;

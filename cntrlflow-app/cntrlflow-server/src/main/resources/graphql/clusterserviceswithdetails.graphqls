@@ -1,0 +1,33 @@
+type ClusterServicesWithDetails {
+  clusterName: String
+  componentName: String
+  hostName: String
+  portNumber: String
+  lockStatus: Boolean
+  componentVersion: String
+  homeLocation: String
+  propertiesLocation: String
+  startLocation: String
+  stopLocation: String
+  logLocation: String
+  executeUser: String
+  startTimeout: Int
+  startPriority: Int
+}
+
+input ClusterServicesWithDetailsInput {
+  clusterName: String
+  componentName: String
+  hostName: String
+  portNumber: String
+  lockStatus: Boolean
+  componentVersion: String
+  homeLocation: String
+  propertiesLocation: String
+  startLocation: String
+  stopLocation: String
+  logLocation: String
+  executeUser: String
+  startTimeout: Int
+  startPriority: Int
+}

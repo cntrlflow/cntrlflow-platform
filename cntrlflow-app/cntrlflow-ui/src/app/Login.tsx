@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import Logo from "@/components/sidebar/_components/logo";
+import Logo from "@/components/sidebar/_components/Logo";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HEADERS, LOGIN_URL } from "@/Constants";
 import { checkAuth } from "@/utils/auth";

@@ -1,0 +1,17 @@
+type AuditLog {
+  id: String
+  clusterName: String
+  userName: String
+  eventName: String
+  properties: String
+  insertTimestamp: String
+}
+
+input AuditLogInput {
+  id: String
+  clusterName: String
+  userName: String
+  eventName: String
+  properties: String
+  insertTimestamp: String
+}

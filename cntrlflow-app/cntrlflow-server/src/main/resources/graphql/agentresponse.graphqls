@@ -1,0 +1,5 @@
+type AgentResponse {
+  statusCode: String
+  message: String
+  content: String
+}

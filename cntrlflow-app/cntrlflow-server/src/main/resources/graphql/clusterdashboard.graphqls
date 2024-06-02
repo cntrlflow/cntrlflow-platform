@@ -1,0 +1,19 @@
+type ClusterDashboard {
+  id: String
+  clusterName: String
+  clusterType: String
+  totalServers: Int
+  totalComponents: Int
+  clusterEmail: String
+  enableSystemMetrics: Boolean
+}
+
+input ClusterDashboardInput {
+  id: String
+  clusterName: String
+  clusterType: String
+  totalServers: Int
+  totalComponents: Int
+  clusterEmail: String
+  enableSystemMetrics: Boolean
+}

@@ -1,0 +1,29 @@
+type ClusterDetails {
+  id: String
+  clusterName: String
+  componentName: String
+  componentVersion: String
+  homeLocation: String
+  propertiesLocation: String
+  startLocation: String
+  stopLocation: String
+  logLocation: String
+  executeUser: String
+  startTimeout: Int
+  startPriority: Int
+}
+
+input ClusterDetailsInput {
+  id: String
+  clusterName: String
+  componentName: String
+  componentVersion: String
+  homeLocation: String
+  propertiesLocation: String
+  startLocation: String
+  stopLocation: String
+  logLocation: String
+  executeUser: String
+  startTimeout: Int
+  startPriority: Int
+}

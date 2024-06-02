@@ -1,0 +1,13 @@
+type Agents {
+  id: String
+  clusterName: String
+  hostName: String
+  portNumber: String
+}
+
+input AgentInput {
+  id: String
+  clusterName: String
+  hostName: String
+  portNumber: String
+}

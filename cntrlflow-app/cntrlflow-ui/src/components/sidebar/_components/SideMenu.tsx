@@ -1,5 +1,5 @@
 import { Home, Package, ShoppingCart, Users2, LineChart } from "lucide-react";
-import MenuWithToolTip from "./menu";
+import MenuWithToolTip from "./Menu";
 
 const SideMenu = () => {
   return (

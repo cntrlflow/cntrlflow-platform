@@ -1,0 +1,17 @@
+type ClusterServices {
+  id: String
+  clusterName: String
+  componentName: String
+  hostName: String
+  portNumber: String
+  lockStatus: Boolean
+}
+
+input ClusterServicesInput {
+  id: String
+  clusterName: String
+  componentName: String
+  hostName: String
+  portNumber: String
+  lockStatus: Boolean
+}

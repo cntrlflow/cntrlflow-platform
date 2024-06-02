@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { Menu, Package2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import RightNav from "@/components/sidebar/_components/right-nav";
-import Logo from "@/components/sidebar/_components/logo";
-import CustomDialog from "./custom-dialog";
+import RightNav from "@/components/sidebar/_components/RightNav";
+import Logo from "@/components/sidebar/_components/Logo";
+import CustomDialog from "./CustomDialog";
 
 const TopBar = () => {
   return (

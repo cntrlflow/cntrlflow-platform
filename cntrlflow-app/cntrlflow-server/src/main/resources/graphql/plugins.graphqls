@@ -1,0 +1,21 @@
+type Plugins {
+  id: String
+  clusterName: String
+  pluginId: String
+  pluginName: String
+  clusterType: String
+  version: String
+  shortDescription: String
+  pluginStatus: Boolean
+}
+
+input PluginsInput {
+  id: String
+  clusterName: String
+  pluginId: String
+  pluginName: String
+  clusterType: String
+  version: String
+  shortDescription: String
+  pluginStatus: Boolean
+}

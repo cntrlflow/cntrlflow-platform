@@ -1,0 +1,17 @@
+type AgentsWithStatus {
+  id: String
+  clusterName: String
+  hostName: String
+  portNumber: String
+  status: Boolean
+  latencyTime: String
+}
+
+input AgentsWithStatusInput {
+  id: String
+  clusterName: String
+  hostName: String
+  portNumber: String
+  status: Boolean
+  latencyTime: String
+}

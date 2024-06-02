@@ -1,4 +1,93 @@
 type Query {
   #Test
   hello: String
+
+  #Agents
+  findAllAgents: [Agents]
+  findAllAgentsByClusterName(clusterName: String!): [Agents]
+  findAllAgentsByClusterNameWithStatus(clusterName: String!): [AgentsWithStatus]
+
+  #ClusterServices
+  findAllClusterServices: [ClusterServices]
+  findAllClusterServicesWithStatus: [ClusterServicesWithStatus]
+  findAllClusterServicesByClusterName(clusterName: String!): [ClusterServices]
+  findAllClusterServicesByClusterNameWithStatus(clusterName: String!): [ClusterServicesWithStatus]
+  findAllClusterServicesAndClusterDetailsByClusterName(clusterName: String!): [ClusterServicesWithDetails]
+
+  #Alerts
+  findAllAlerts: [Alerts]
+  findAllAlertsByClusterName(clusterName: String!): [Alerts]
+
+  #Cluster Details
+  findAllClusterDetails: [ClusterDetails]
+  findAllClusterDetailsByClusterName(clusterName: String!): [ClusterDetails]
+
+  #Cluster Dashboard
+  findAllClusterDashboard: [ClusterDashboard]
+  findAllClusterDashboardByClusterName(clusterName: String!): [ClusterDashboard]
+
+  #User Role
+  findAllUserRoles: [UserRole]
+  findUserRoleByClusterName(clusterName: String!): [UserRole]
+
+  #Audit Log
+  findAllAuditLogs: [AuditLog]
+  findAllAuditLogsByClusterName(clusterName: String!): [AuditLog]
+
+  #Test RSocket connection
+  testRSocketConnection: String
+
+  #Test Connection
+  testConnection: String
+
+  #System Metrics
+  findSystemMetricsListByClusterName(clusterName: String!): [SystemMetrics]
+  findSystemMetricsListByClusterNameAndHostName(clusterName: String!, hostName: String!): [SystemMetrics]
+  findSystemMetricsListByClusterNameBetweenTimestamps(clusterName: String!, startTime: String!, endTime: String!): [SystemMetrics]
+  findSystemMetricsListByClusterNameAndHostNameBetweenTimestamps(clusterName: String!, hostName: String!, startTime: String!, endTime: String!): [SystemMetrics]
+
+  #Plugins
+  findAllPlugins: [Plugins]
+  findPluginsByClusterName(clusterName: String!): [Plugins]
+}
+
+type Mutation {
+  #Agents
+  addNewAgents(agentsList: [AgentInput!]): Boolean
+  deleteAgents(agentsList: [AgentInput!]): Boolean
+
+  #ClusterServices
+  addClusterServices(clusterServicesList: [ClusterServicesInput!]): Boolean
+  deleteClusterServices(clusterServicesList: [ClusterServicesInput!]): Boolean
+
+  #Alerts
+  addNewAlerts(alertList: [AlertInput!]): Boolean
+  deleteAlerts(alertList: [AlertInput!]): Boolean
+
+  #Cluster Details
+  addClusterDetails(clusterDetailsList: [ClusterDetailsInput!]): Boolean
+  deleteClusterDetails(clusterDetailsList: [ClusterDetailsInput!]): Boolean
+
+  #Cluster Dashboard
+  addClusterDashboard(clusterDashboardList: [ClusterDashboardInput!]): Boolean
+  deleteClusterDashboard(
+    clusterDashboardList: [ClusterDashboardInput!]
+  ): Boolean
+
+  #Register
+  registerCluster(register: RegisterInput!): Boolean
+
+  #User Role
+  addUserRoles(userRoleList: [UserRoleInput!]): Boolean
+  deleteUserRoles(userRoleList: [UserRoleInput!]): Boolean
+
+  #Plugins
+  deletePlugins(pluginsList: [PluginsInput!]): Boolean
+  addNewPlugins(pluginsList: [PluginsInput!]): Boolean
+  
+  #System
+  readConfigFile(clusterServicesWithDetails: ClusterServicesWithDetailsInput!, configFileName: String!, configType: String!, fileType: String!): AgentResponse
+  getDiskUsage(agentsWithStatus: AgentsWithStatusInput!): AgentResponse
+  writeConfigFile(clusterServicesWithDetails: ClusterServicesWithDetailsInput!, configFileName: String!, configFileContent: String!): AgentResponse
+  executeFile(clusterServicesWithDetails: ClusterServicesWithDetailsInput!, action: String!): AgentResponse
 }

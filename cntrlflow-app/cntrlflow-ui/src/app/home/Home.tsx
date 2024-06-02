@@ -1,7 +1,7 @@
 //sfc
-import TopBar from "@/components/topbar/topbar";
+import TopBar from "@/components/topbar/Topbar";
 import HomeCard from "./_components/HomeCard";
-import { DollarSign, Search } from "lucide-react";
+import { HardDrive, Search, Server, UsersRound, Component } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import CustomTableWithLink from "./_components/CustomTableWithLink";
 
@@ -56,24 +56,30 @@ const Home = () => {
     <div>
       <TopBar />
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <HomeCard
             xChunk="chunk-0"
             name="Total Clusters"
-            icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
-            metrics="$45,231.89"
+            icon={<Server className="h-4 w-4 text-muted-foreground" />}
+            metrics="10"
           />
           <HomeCard
             xChunk="chunk-1"
             name="Total Servers"
-            icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
-            metrics="$45,231.89"
+            icon={<HardDrive className="h-4 w-4 text-muted-foreground" />}
+            metrics="70"
           />
           <HomeCard
             xChunk="chunk-2"
-            name="Total Revenue"
-            icon={<DollarSign className="h-4 w-4 text-muted-foreground" />}
-            metrics="$45,231.89"
+            name="Total Services"
+            icon={<Component className="h-4 w-4 text-muted-foreground" />}
+            metrics="30"
+          />
+          <HomeCard
+            xChunk="chunk-2"
+            name="Total Users"
+            icon={<UsersRound className="h-4 w-4 text-muted-foreground" />}
+            metrics="120"
           />
         </div>
 

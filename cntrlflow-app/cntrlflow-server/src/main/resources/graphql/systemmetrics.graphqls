@@ -1,0 +1,31 @@
+type SystemMetrics {
+	id: String
+	clusterName: String
+	cpuUsage: String
+	upTime: String
+	hostName: String
+	totalRecievedBytes: String
+	memoryUsage: String
+	diskUsedSpace: String
+	diskFreeSpace: String
+	diskTotalSize: String
+	totalSentBytes: String
+	requestTimestamp: String
+	insertTimestamp: String
+}
+
+input SystemMetricsInput {
+	id: String
+	clusterName: String
+	cpuUsage: String
+	upTime: String
+	hostName: String
+	totalRecievedBytes: String
+	memoryUsage: String
+	diskUsedSpace: String
+	diskFreeSpace: String
+	diskTotalSize: String
+	totalSentBytes: String
+	requestTimestamp: String
+	insertTimestamp: String
+}

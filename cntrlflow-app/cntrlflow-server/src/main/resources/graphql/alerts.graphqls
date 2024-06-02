@@ -1,0 +1,17 @@
+type Alerts {
+  id: String
+  clusterName: String
+  alertName: String
+  componentName: String
+  hostName: String
+  insertTimestamp: String
+}
+
+input AlertInput {
+  id: String
+  clusterName: String
+  alertName: String
+  componentName: String
+  hostName: String
+  insertTimestamp: String
+}

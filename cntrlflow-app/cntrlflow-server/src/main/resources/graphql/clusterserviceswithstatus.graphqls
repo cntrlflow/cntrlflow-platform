@@ -1,0 +1,14 @@
+type KeyValuePair {
+  key: String!
+  value: Boolean!
+}
+
+type ClusterServicesWithStatus {
+  id: String
+  clusterName: String
+  componentName: String
+  hostName: String
+  portNumber: String
+  status: [KeyValuePair]
+  lockStatus: Boolean
+}

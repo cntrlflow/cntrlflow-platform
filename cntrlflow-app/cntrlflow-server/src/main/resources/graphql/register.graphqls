@@ -1,0 +1,13 @@
+type Register {
+  clusterDashboardList: [ClusterDashboard]
+  clusterServicesList: [ClusterServices]
+  clusterDetailsList: [ClusterDetails]
+  agentsList: [Agents]
+}
+
+input RegisterInput {
+  clusterDashboardList: [ClusterDashboardInput]
+  clusterServicesList: [ClusterServicesInput]
+  clusterDetailsList: [ClusterDetailsInput]
+  agentsList: [AgentInput]
+}

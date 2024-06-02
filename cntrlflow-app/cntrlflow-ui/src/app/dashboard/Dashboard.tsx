@@ -1,5 +1,5 @@
-import NavMenu from "@/components/sidebar/nav-menu";
-import SideBar from "@/components/sidebar/sidebar";
+import NavMenu from "@/components/sidebar/NavMenu";
+import SideBar from "@/components/sidebar/Sidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Summary from "./_components/Summary";
 import Configuration from "./_components/Configuration";

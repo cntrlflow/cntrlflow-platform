@@ -1,6 +1,6 @@
-import Logo from "./_components/logo";
-import SideMenu from "./_components/side-menu";
-import Version from "./_components/version";
+import Logo from "./_components/Logo";
+import SideMenu from "./_components/SideMenu";
+import Version from "./_components/Version";
 
 const SideBar = () => {
   return (

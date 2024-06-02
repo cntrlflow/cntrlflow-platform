@@ -1,0 +1,13 @@
+type UserRole {
+  id: String
+  clusterName: String
+  userName: String
+  role: String
+}
+
+input UserRoleInput {
+  id: String
+  clusterName: String
+  userName: String
+  role: String
+}
