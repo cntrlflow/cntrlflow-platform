@@ -1,5 +1,50 @@
 {
-  "name": "John Doe",
-  "age": 30,
-  "city": "New York"
+  "clusterName": "KAFKA-DEV",
+  "clusterType": "KAFKA",
+  "alertsEmail": "alerts@cntrlflow.com",
+  "agentPort": "5001",
+  "clusterDetails": [
+    {
+      "componentName": "ZOOKEEPER",
+      "componentVersion": "1.0",
+      "homeLocation": "/home/zookeeper",
+      "propertiesLocation": "/home/zookeeper/etc/zookeeper.properties",
+      "startLocation": "/home/zookeeper/bin/start-zookeeper.sh",
+      "stopLocation": "/home/zookeeper/bin/stop-zookeeper.sh",
+      "logLocation": "/home/zookeeper/log/zookeeper.log",
+      "executeUser": "zookeeper",
+      "startTimeout": 10,
+      "startPriority": 1,
+      "servers": "server1,server2,server3",
+      "port": "2181"
+    },
+    {
+      "componentName": "KAFKA_BROKER",
+      "componentVersion": "1.0",
+      "homeLocation": "/home/kafka",
+      "propertiesLocation": "/home/kafka/etc/kafka.properties",
+      "startLocation": "/home/kafka/bin/start-kafka-server.sh",
+      "stopLocation": "/home/kafka/bin/stop-kafka-server.sh",
+      "logLocation": "/home/kafka/log/kafka.log",
+      "executeUser": "kafka",
+      "startTimeout": 10,
+      "startPriority": 2,
+      "servers": "server1,server2,server3",
+      "port": "9093"
+    },
+    {
+      "componentName": "SCHEMA_REGISTRY",
+      "componentVersion": "1.0",
+      "homeLocation": "/home/schema-registry",
+      "propertiesLocation": "/home/schema-registry/etc/schema-registry.properties",
+      "startLocation": "/home/schema-registry/bin/start-schema-registry-server.sh",
+      "stopLocation": "/home/schema-registry/bin/stop-schema-registry-server.sh",
+      "logLocation": "/home/schema-registry/log/schema-registry.log",
+      "executeUser": "schemaregistry",
+      "startTimeout": 10,
+      "startPriority": 3,
+      "servers": "server1,server2,server3",
+      "port": "8081"
+    }
+  ]
 }
